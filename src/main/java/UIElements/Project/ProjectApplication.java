@@ -1,6 +1,5 @@
 package UIElements.Project;
 
-import UIElements.Project.ReturnInterfaces.CategoryWithFilmInterface;
 import UIElements.Project.ReturnInterfaces.FilmWithActorInterface;
 import UIElements.Project.ReturnInterfaces.FilmsWithActorInterface;
 import org.springframework.boot.SpringApplication;
@@ -9,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
 
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
-import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
-import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
 
 import java.util.List;
 
@@ -25,28 +20,19 @@ public class ProjectApplication {
 	//http://localhost:8080/home/getactor/21
 	@Autowired
 	private ActorRepository actorRepository;
-	private AddressRepository addressRepository;
-	private CountryRepository countryRepository;
 	private FilmRepository filmRepository;
 
 	private FilmActorRepository filmActorRepository;
 
 	private FilmCategoryRepository filmCategoryRepository;
 
-	private CategoryRepository categoryRepository;
-
-	private LanguageRepository languageRepository;
 
 	public ProjectApplication(ActorRepository actorRepository, FilmRepository filmRepository,
 							  FilmActorRepository filmActorRepository, FilmCategoryRepository filmCategoryRepository){
 		this.actorRepository = actorRepository;
-//		this.addressRepository = addressRepository;
-//		this.countryRepository = countryRepository;
 		this.filmRepository = filmRepository;
 		this.filmActorRepository = filmActorRepository;
 		this.filmCategoryRepository = filmCategoryRepository;
-//		this.categoryRepository = categoryRepository;
-//		this.languageRepository = languageRepository;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
@@ -95,11 +81,6 @@ public class ProjectApplication {
 	@GetMapping("/actors/last")
 	public @ResponseBody Actor getLastActor(){
 		return actorRepository.findLast();
-	}
-
-	@GetMapping("/address")
-	public @ResponseBody Iterable<Address> getAddress(){
-		return addressRepository.findAll();
 	}
 
 	@GetMapping("/actors/{actorid}/films")
