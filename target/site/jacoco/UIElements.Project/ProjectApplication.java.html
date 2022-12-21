@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Project</a> &gt; <a href="index.source.html" class="el_package">UIElements.Project</a> &gt; <span class="el_source">ProjectApplication.java</span></div><h1>ProjectApplication.java</h1><pre class="source lang-java linenums">package UIElements.Project;
+
+import UIElements.Project.ReturnInterfaces.FilmWithActorInterface;
+import UIElements.Project.ReturnInterfaces.FilmsWithActorInterface;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResourceAccessException;
+
+
+import java.util.List;
+
+@SpringBootApplication
+@RestController
+@RequestMapping(&quot;/home&quot;)
+@CrossOrigin
+public class ProjectApplication {
+
+	//http://localhost:8080/home/getactor/21
+	@Autowired
+	private ActorRepository actorRepository;
+	private FilmRepository filmRepository;
+
+	private FilmActorRepository filmActorRepository;
+
+	private FilmCategoryRepository filmCategoryRepository;
+
+
+	public ProjectApplication(ActorRepository actorRepository, FilmRepository filmRepository,
+<span class="nc" id="L31">							  FilmActorRepository filmActorRepository, FilmCategoryRepository filmCategoryRepository){</span>
+<span class="nc" id="L32">		this.actorRepository = actorRepository;</span>
+<span class="nc" id="L33">		this.filmRepository = filmRepository;</span>
+<span class="nc" id="L34">		this.filmActorRepository = filmActorRepository;</span>
+<span class="nc" id="L35">		this.filmCategoryRepository = filmCategoryRepository;</span>
+<span class="nc" id="L36">	}</span>
+	public static void main(String[] args) {
+<span class="nc" id="L38">		SpringApplication.run(ProjectApplication.class, args);</span>
+<span class="nc" id="L39">	}</span>
+
+	@GetMapping(&quot;/actors&quot;)
+	public @ResponseBody Iterable&lt;Actor&gt; getActors(){
+<span class="nc" id="L43">		return actorRepository.findAll();</span>
+	}
+
+	@GetMapping(&quot;/actors/{actorID}&quot;)
+	public Actor getActorsByID(@PathVariable int actorID){
+<span class="nc" id="L48">		return actorRepository.findById(actorID)</span>
+<span class="nc" id="L49">				.orElseThrow(() -&gt; new ResourceAccessException(&quot;Actor with ID: &quot; + actorID + &quot; does not exist.&quot;));</span>
+	}
+
+	@PutMapping(&quot;/actors/update/{actorID}&quot;)
+	public Actor putActorsByID(@RequestBody Actor newActor, @PathVariable int actorID){
+<span class="nc" id="L54">		return actorRepository.findById(actorID)</span>
+<span class="nc" id="L55">				.map(actor -&gt; {</span>
+<span class="nc" id="L56">					actor.setFirstName(newActor.getFirstName());</span>
+<span class="nc" id="L57">					actor.setLastName(newActor.getLastName());</span>
+<span class="nc" id="L58">					return actorRepository.save(actor);</span>
+				})
+<span class="nc" id="L60">				.orElseGet(() -&gt; {</span>
+<span class="nc" id="L61">					newActor.setActorId(actorID);</span>
+<span class="nc" id="L62">					return actorRepository.save(newActor);</span>
+				});
+	}
+
+	@PostMapping(&quot;/actors/add&quot;)
+	public Actor postActors(@RequestBody Actor newActor){
+<span class="nc" id="L68">		return actorRepository.save(newActor);</span>
+	}
+
+	@DeleteMapping(&quot;/actors/delete/{actorID}&quot;)
+	public void deleteActorsByID(@PathVariable int actorID){
+<span class="nc" id="L73">		actorRepository.deleteById(actorID);</span>
+<span class="nc" id="L74">	}</span>
+
+	@GetMapping(&quot;/actors/first&quot;)
+	public @ResponseBody Actor getFirstActor(){
+<span class="nc" id="L78">		return actorRepository.findFirst();</span>
+	}
+
+	@GetMapping(&quot;/actors/last&quot;)
+	public @ResponseBody Actor getLastActor(){
+<span class="nc" id="L83">		return actorRepository.findLast();</span>
+	}
+
+	@GetMapping(&quot;/actors/{actorid}/films&quot;)
+	public @ResponseBody Iterable&lt;FilmsWithActorInterface&gt; getFilmWithActor(@PathVariable int actorid){
+<span class="nc" id="L88">		return actorRepository.getFilmsWithActor(actorid);</span>
+	}
+
+	@GetMapping(&quot;/films&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; getFilms(){
+<span class="nc" id="L93">		return filmRepository.findAll();</span>
+	}
+
+	@GetMapping(&quot;/films/id/{filmID}&quot;)
+	public Film getFilmsById (@PathVariable int filmID){
+<span class="nc" id="L98">		return filmRepository.findById(filmID)</span>
+<span class="nc" id="L99">				.orElseThrow(() -&gt; new ResourceAccessException(&quot;Film with ID: &quot; + filmID + &quot; does not exist.&quot;));</span>
+	}
+
+	@GetMapping(&quot;/films/category&quot;)
+	public @ResponseBody Iterable&lt;FilmCategory&gt; getFilmCategory(){
+<span class="nc" id="L104">		return filmCategoryRepository.findAll();</span>
+	}
+
+	@GetMapping(&quot;/films/category/{category}&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; matchCategoryWithFilms(@PathVariable String category){
+<span class="nc" id="L109">		return filmRepository.matchCategoryWithFilms(category);</span>
+	}
+
+	@GetMapping(&quot;/films/{filmid}/actors&quot;)
+	public @ResponseBody Iterable&lt;FilmWithActorInterface&gt; matchFilmWithActors(@PathVariable int filmid){
+<span class="nc" id="L114">		return filmRepository.matchFilmWithActors(filmid);</span>
+	}
+
+	@GetMapping(&quot;/films/name/{filmname}&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; findFilmWithName(@PathVariable String filmname) {
+<span class="nc" id="L119">		return filmRepository.findFilmWithName(filmname);</span>
+	}
+
+	@GetMapping(&quot;/films/description/{filmdesc}&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; findFilmWithDescription(@PathVariable String filmdesc) {
+<span class="nc" id="L124">		return filmRepository.findFilmWithDescription(filmdesc);</span>
+	}
+
+	@GetMapping(&quot;/actors/name/{actorfirstname}&quot;)
+	public @ResponseBody Iterable&lt;Actor&gt; findActorWithName(@PathVariable String actorfirstname){
+<span class="nc" id="L129">		return actorRepository.findActorWithName(actorfirstname, &quot;&quot;);</span>
+	}
+
+	@GetMapping(&quot;/actors/name/{actorfirstname}/{actorlastname}&quot;)
+	public @ResponseBody Iterable&lt;Actor&gt; findActorWithName(@PathVariable String actorfirstname, @PathVariable String actorlastname){
+<span class="nc" id="L134">		return actorRepository.findActorWithName(actorfirstname, actorlastname);</span>
+	}
+
+	@GetMapping(&quot;films/length/{filmlength}&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; findFilmsWithLessLengthThan(@PathVariable int filmlength){
+<span class="nc" id="L139">		return filmRepository.findFilmsWithLessLengthThan(filmlength);</span>
+	}
+
+	@GetMapping(&quot;films/rating/{filmrating}&quot;)
+	public @ResponseBody Iterable&lt;Film&gt; findFilmsWithRating(@PathVariable String filmrating){
+<span class="nc" id="L144">		return filmRepository.findFilmsWithRating(filmrating);</span>
+	}
+
+	@PostMapping(&quot;/films/{filmid}/add/{actorid}&quot;)
+	public FilmActor addActorToFilm(@PathVariable int filmid, @PathVariable int actorid){
+<span class="nc" id="L149">		Film selfilm = filmRepository.findById(filmid).orElseThrow(() -&gt; new ResourceAccessException(&quot;Film with ID: &quot; + filmid + &quot; does not exist.&quot;));</span>
+<span class="nc" id="L150">		Actor selfactor = actorRepository.findById(actorid).orElseThrow(() -&gt; new ResourceAccessException(&quot;Actor with ID: &quot; + actorid + &quot; does not exist.&quot;));</span>
+<span class="nc" id="L151">		return filmActorRepository.save(new FilmActor(selfactor, selfilm));</span>
+	}
+
+	@GetMapping(&quot;/films/random&quot;)
+	public @ResponseBody Film getRandomFilm(){
+<span class="nc" id="L156">		List&lt;Film&gt; films = filmRepository.findAll();</span>
+<span class="nc" id="L157">		int rand = (int) (Math.random()*films.size()+1);</span>
+<span class="nc" id="L158">		return films.get(rand);</span>
+	}
+
+	@PostMapping(&quot;/films/add&quot;)
+	public void addFilm(@RequestBody Film newFilm){
+<span class="nc" id="L163">		filmRepository.save(newFilm);</span>
+<span class="nc" id="L164">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

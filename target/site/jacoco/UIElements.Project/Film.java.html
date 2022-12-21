@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Film.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Project</a> &gt; <a href="index.source.html" class="el_package">UIElements.Project</a> &gt; <span class="el_source">Film.java</span></div><h1>Film.java</h1><pre class="source lang-java linenums">package UIElements.Project;
+
+
+import jakarta.persistence.*;
+@Entity
+@Table(name=&quot;film&quot;)
+public class Film {
+
+    @Id
+    @Column(name = &quot;film_id&quot;)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int filmId;
+
+    @Column(name=&quot;title&quot;)
+    String title;
+
+    @Column(name=&quot;description&quot;)
+    String description;
+
+    @Column(name=&quot;release_year&quot;)
+    String releaseYear;
+
+    @Column(name=&quot;length&quot;)
+    String length;
+
+    @Column(name=&quot;rating&quot;)
+    String rating;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = &quot;language_id&quot;, referencedColumnName = &quot;language_id&quot;)
+//    Language language;
+
+<span class="nc" id="L33">    public Film(){}</span>
+
+    public int getFilmId() {
+<span class="nc" id="L36">        return filmId;</span>
+    }
+
+    public void setFilmId(int filmId) {
+<span class="nc" id="L40">        this.filmId = filmId;</span>
+<span class="nc" id="L41">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L44">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L48">        this.title = title;</span>
+<span class="nc" id="L49">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L52">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L56">        this.description = description;</span>
+<span class="nc" id="L57">    }</span>
+
+    public String getReleaseYear() {
+<span class="nc" id="L60">        return releaseYear;</span>
+    }
+
+    public void setReleaseYear(String releaseYear) {
+<span class="nc" id="L64">        this.releaseYear = releaseYear;</span>
+<span class="nc" id="L65">    }</span>
+
+    public String getLength() {
+<span class="nc" id="L68">        return length;</span>
+    }
+
+    public void setLength(String length) {
+<span class="nc" id="L72">        this.length = length;</span>
+<span class="nc" id="L73">    }</span>
+
+    public String getRating() {
+<span class="nc" id="L76">        return rating;</span>
+    }
+
+    public void setRating(String rating) {
+<span class="nc" id="L80">        this.rating = rating;</span>
+<span class="nc" id="L81">    }</span>
+
+//    public Language getLanguage() {
+//        return language;
+//    }
+//
+//    public void setLanguage(Language language) {
+//        this.language = language;
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
