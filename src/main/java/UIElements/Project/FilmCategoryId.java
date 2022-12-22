@@ -15,17 +15,4 @@ public class FilmCategoryId implements Serializable {
     }
 
     public FilmCategoryId(){}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FilmCategoryId that = (FilmCategoryId) o;
-        return filmId == that.filmId && categoryId == that.categoryId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(filmId, categoryId);
-    }
 }

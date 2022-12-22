@@ -15,18 +15,5 @@ public class FilmCategoryId implements Serializable {
 <span class="fc" id="L15">    }</span>
 
 <span class="fc" id="L17">    public FilmCategoryId(){}</span>
-
-    @Override
-    public boolean equals(Object o) {
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if (this == o) return true;</span>
-<span class="pc bpc" id="L22" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="fc" id="L23">        FilmCategoryId that = (FilmCategoryId) o;</span>
-<span class="pc bpc" id="L24" title="2 of 4 branches missed.">        return filmId == that.filmId &amp;&amp; categoryId == that.categoryId;</span>
-    }
-
-    @Override
-    public int hashCode() {
-<span class="nc" id="L29">        return Objects.hash(filmId, categoryId);</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -13,11 +13,4 @@ public class FilmCategoryIdTest {
         Assertions.assertTrue(true);
     }
 
-    @Test
-    public void filmActorIdEquals(){
-        FilmCategoryId filmCategoryId1 = new FilmCategoryId(1, 1);
-        FilmCategoryId filmCategoryId2 = new FilmCategoryId(1, 1);
-        Assertions.assertEquals(filmCategoryId1, filmCategoryId2);
-    }
-
 }

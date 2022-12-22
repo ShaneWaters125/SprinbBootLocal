@@ -17,17 +17,4 @@ class FilmActorId implements Serializable {
         this.actorId = actorId;
     }
     public FilmActorId(){}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FilmActorId that = (FilmActorId) o;
-        return filmId == that.filmId && actorId == that.actorId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(filmId, actorId);
-    }
 }

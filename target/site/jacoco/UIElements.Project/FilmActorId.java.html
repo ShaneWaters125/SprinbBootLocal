@@ -17,18 +17,5 @@ class FilmActorId implements Serializable {
 <span class="fc" id="L17">        this.actorId = actorId;</span>
 <span class="fc" id="L18">    }</span>
 <span class="fc" id="L19">    public FilmActorId(){}</span>
-
-    @Override
-    public boolean equals(Object o) {
-<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        if (this == o) return true;</span>
-<span class="pc bpc" id="L24" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="fc" id="L25">        FilmActorId that = (FilmActorId) o;</span>
-<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        return filmId == that.filmId &amp;&amp; actorId == that.actorId;</span>
-    }
-
-    @Override
-    public int hashCode() {
-<span class="nc" id="L31">        return Objects.hash(filmId, actorId);</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

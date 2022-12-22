@@ -13,11 +13,4 @@ public class FilmActorIdTest {
         Assertions.assertTrue(true);
     }
 
-    @Test
-    public void filmActorIdEquals(){
-        FilmActorId filmActorId1 = new FilmActorId(1, 1);
-        FilmActorId filmActorId2 = new FilmActorId(1, 1);
-        Assertions.assertEquals(filmActorId1, filmActorId2);
-    }
-
 }
