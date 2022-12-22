@@ -130,9 +130,16 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>**/*ProjectApplication.*</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 
 	</build>
+
+
 
 </project>
