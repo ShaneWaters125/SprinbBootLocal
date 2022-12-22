@@ -1,4 +1,4 @@
-package UIElements.Project;
+package UIElements.Project.cucumber;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

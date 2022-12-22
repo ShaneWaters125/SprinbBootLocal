@@ -1,5 +1,7 @@
-package UIElements.Project;
+package UIElements.Project.cucumber;
 
+import UIElements.Project.Actor;
+import UIElements.Project.ActorRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
