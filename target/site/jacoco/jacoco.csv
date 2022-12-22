@@ -5,5 +5,5 @@ Project,UIElements.Project,ProjectApplication,236,0,0,0,45,0,30,0,30,0
 Project,UIElements.Project,Category,17,0,0,0,7,0,5,0,5,0
 Project,UIElements.Project,FilmCategoryId,59,0,10,0,10,0,9,0,4,0
 Project,UIElements.Project,FilmActorId,59,0,10,0,10,0,9,0,4,0
-Project,UIElements.Project,Film,45,0,0,0,19,0,13,0,13,0
-Project,UIElements.Project,Actor,30,3,0,0,13,1,7,1,7,1
+Project,UIElements.Project,Film,0,45,0,0,0,19,0,13,0,13
+Project,UIElements.Project,Actor,0,33,0,0,0,14,0,8,0,8
