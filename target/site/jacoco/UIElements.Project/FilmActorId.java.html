@@ -12,18 +12,18 @@ class FilmActorId implements Serializable {
 
     private int actorId;
 
-<span class="nc" id="L15">    public FilmActorId(int filmId, int actorId){</span>
-<span class="nc" id="L16">        this.filmId = filmId;</span>
-<span class="nc" id="L17">        this.actorId = actorId;</span>
-<span class="nc" id="L18">    }</span>
-<span class="nc" id="L19">    public FilmActorId(){}</span>
+<span class="fc" id="L15">    public FilmActorId(int filmId, int actorId){</span>
+<span class="fc" id="L16">        this.filmId = filmId;</span>
+<span class="fc" id="L17">        this.actorId = actorId;</span>
+<span class="fc" id="L18">    }</span>
+<span class="fc" id="L19">    public FilmActorId(){}</span>
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L24" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L25">        FilmActorId that = (FilmActorId) o;</span>
-<span class="nc bnc" id="L26" title="All 4 branches missed.">        return filmId == that.filmId &amp;&amp; actorId == that.actorId;</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L24" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L25">        FilmActorId that = (FilmActorId) o;</span>
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">        return filmId == that.filmId &amp;&amp; actorId == that.actorId;</span>
     }
 
     @Override
